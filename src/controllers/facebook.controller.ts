@@ -1,18 +1,15 @@
+import { Router, Request, Response } from "express";
 
-// import { Controller, Get, PathParams, Required, Req } from 'ts-express-decorators';
-// // import { Returns } from 'ts-express-decorators/lib/swagger';
+const router: Router = Router();
 
-// @Controller('/facebook')
-// export class FacebookController{
-//     @Get('/test')
-//     // @Returns(string)
-//     async test(): Promise<string> {
-//         return 'hello world from facebook controller';
-//     }    
+router.get("/webhook", (req: Request, res: Response) => {
+  res.send("Hello, World!");
+});
 
-//     @Get('/webhook')
-//     // @Returns(string)
-//     async getUser(): Promise<string> {
-//         return 'hello';
-//     }    
-// }
+router.post("/webhook", (req: Request, res: Response) => {
+  let { name } = req.params;
+
+  res.send(`Hello, ${name}`);
+});
+
+export const FacebookController: Router = router;
